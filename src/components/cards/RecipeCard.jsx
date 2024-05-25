@@ -1,13 +1,10 @@
-/* eslint-disable react/prop-types */
-import pizza from "../../assets/pizza.webp";
-
 export default function RecipeCard({ recipe }) {
   return (
-    <div className="shadow-xl card bg-base-100">
+    <div className="">
       <figure>
-        <img src={pizza} alt="food" className="max-w-50" />
+        <img src={recipe.image} alt="food" className="object-cover w-full max-h-[200px] aspect-video rounded-2xl" />
       </figure>
-      <div className="card-body">
+      <div className="py-5">
         <h2 className="card-title">{recipe?.title}</h2>
         <h2 className="card-title">{recipe?.price}</h2>
         <p>
