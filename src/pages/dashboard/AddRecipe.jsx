@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AddRecipe = () => {
   const [categories, setCategories] = useState();
@@ -45,43 +46,53 @@ const AddRecipe = () => {
       image
     };
 
+  try {
     await axios.post("http://localhost:3000/recipes", recipeData);
+    toast.success('Recipe Added Successfully')
+  } catch (error) {
+    toast.error(error.message)
+  }
   };
   return (
     <div className="w-full px-16">
-      <h1 className="mb-4 text-4xl">Add Recipe</h1>
+      <h1 className="mb-4 text-4xl text-center">Add Recipe</h1>
       <form onSubmit={handleCreateRecipe} className="w-full">
 
         <div className="mb-4">
           <label htmlFor="">Title </label>
-          <input type="text" name="title" className="w-full px-5 py-3 border" />
+          <input required type="text" name="title" className="w-full px-5 py-3 border" />
         </div>
-        <div className="mb-4">
+       <div className="flex gap-5 mb-4">
+       <div className="flex-1">
           <label htmlFor="">Price </label>
           <input
-            type="number"
-            name="price"
-            className="w-full px-5 py-3 border"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="">Image URL </label>
-          <input
+          required
             type="text"
-            name="image"
+            name="string"
             className="w-full px-5 py-3 border"
           />
         </div>
-        <div className="mb-4">
+        <div className="flex-1">
           <label htmlFor="">Category </label>
           <select name="category" id="" className="w-full px-5 py-3 border">
             {categories?.map((category) => (
-              <option key={category?.id} value={category?.title}>
+              <option key={category?.id} defaultValue={category?.title} value={category?.title}>
                 {category?.title}
               </option>
             ))}
           </select>
         </div>
+       </div>
+        <div className="mb-4">
+          <label htmlFor="">Image URL </label>
+          <input
+          required
+            type="text"
+            name="image"
+            className="w-full px-5 py-3 border"
+          />
+        </div>
+       
 
         <div className="mb-4">
           <label htmlFor="">Description </label>
@@ -89,10 +100,10 @@ const AddRecipe = () => {
         </div>
 
         <div className="mb-4">
-          <input
+        <input
             type="submit"
             value={"Add Recipe"}
-            className="w-full px-5 py-3 border btn btn-neutral"
+            className="w-32 px-5 py-3 text-white border btn btn-success"
           />
         </div>
       </form>

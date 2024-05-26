@@ -28,8 +28,8 @@ export default function ManageAllRecipe() {
   };
 
   return (
-    <div className="w-full mt-5 overflow-x-auto">
-      <h1 className="mb-4 text-3xl text-center ">Mange All Recipe</h1>
+    <div className="w-full overflow-x-auto">
+      <h1 className="mb-4 text-4xl text-center ">Mange All Recipe</h1>
       <table className="table table-zebra">
         {/* head */}
         <thead >

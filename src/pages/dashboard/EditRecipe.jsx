@@ -57,7 +57,7 @@ const EditRecipe = () => {
   };
   return (
     <div className="w-full px-16">
-      <h1 className="mb-4 text-4xl">Add Recipe</h1>
+         <h1 className="mb-4 text-4xl text-center">Edit Recipe</h1>
       <form onSubmit={handleCreateRecipe} className="w-full">
         <div className="mb-4">
           <label htmlFor="">Title </label>
@@ -71,7 +71,7 @@ const EditRecipe = () => {
         <div className="mb-4">
           <label htmlFor="">Price </label>
           <input
-            type="number"
+            type="text"
             name="price"
             defaultValue={recipeDetails?.price}
             className="w-full px-5 py-3 border"
@@ -104,8 +104,8 @@ const EditRecipe = () => {
         <div className="mb-4">
           <input
             type="submit"
-            value={"Add Recipe"}
-            className="w-full px-5 py-3 border btn btn-neutral"
+            value={"Update Recipe"}
+            className="w-32 px-5 py-3 border btn btn-warning btn-neutral"
           />
         </div>
       </form>
