@@ -9,7 +9,7 @@ const CategoriesRecipes = ({recipes, categories, selectedCategory, setSelectedCa
     <div className="sticky col-span-2 ">
 
 
-    <h1 className="mb-5 text-4xl font-bold">Recipes </h1>
+    <h1 className="mb-5 text-4xl font-bold">Recipes</h1>
       <ul>
         {categories?.map((category) => <li   className={`text-lg  cursor-pointer hover:text-red-600 ${
       selectedCategory === category.title ? 'text-red-600 font-semibold' : 'font-medium'

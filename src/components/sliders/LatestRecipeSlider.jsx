@@ -12,7 +12,7 @@ const LatestRecipeSlider = ({recipes}) => {
 
   return (
    <>
-   <h1 className="my-10 text-4xl text-center">Latest Recipes</h1>
+   <h1 className="my-10 text-4xl font-bold text-center">Latest Recipes</h1>
     <div className="flex flex-col items-center justify-center ">
       <Swiper
         breakpoints={{
@@ -43,7 +43,7 @@ const LatestRecipeSlider = ({recipes}) => {
               <div className="absolute inset-0 bg-black opacity-30 group-hover:opacity-60" />
               <div className="relative flex flex-col gap-3">
                 {/* <item.icon className="text-blue-600 group-hover:text-blue-400 w-[32px] h-[32px]" /> */}
-                <h1 className="text-xl lg:text-2xl drop-shadow-lg">{item.title} </h1>
+                <h1 className="text-xl font-bold uppercase lg:text-2xl drop-shadow-lg">{item.title} </h1>
                 <h1 className="text-sm drop-shadow-lg">{item.category} </h1>
                 <p className="lg:text-[18px] drop-shadow-lg">{item.description} </p>
               </div>

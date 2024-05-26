@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .swiper-pagination-bullet-active {
-  background-color: red;
+  @apply bg-red-500;
 }
