@@ -8,7 +8,6 @@ export default function Navbar() {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
 
-  console.log(user)
   const handleLogout = async () => {
     await signOut();
   };
@@ -71,7 +70,7 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 "
           >
             <li>
-              <a>All Recipes</a>
+              <Link to={`/all-recipes`}>All Recipes</Link>
             </li>
             <li>
               <a>About Us</a>
@@ -86,7 +85,7 @@ export default function Navbar() {
       <div className="hidden navbar-end lg:flex">
       <ul className="flex items-center gap-6 px-1 font-semibold">
   <li>
-    <a className="hover:text-red-500">All Recipes</a>
+    <Link to={`/all-recipes`} className="hover:text-red-500">All Recipes</Link>
   </li>
   <li>
     <Link to="/about" className="hover:text-red-500">About Us</Link>

@@ -1,8 +1,9 @@
 import { useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase.config";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
-export default function DashbaordLayout() {
+export default function DashboardLayout() {
   const [signOut] = useSignOut(auth);
 
   const handleLogout = async () => {
@@ -11,8 +12,10 @@ export default function DashbaordLayout() {
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
-        <Outlet />
+      <div className="flex flex-col py-10 drawer-content">
+      <div className="w-full">  <Outlet />
+      <Toaster   position="top-right"
+  reverseOrder={false}/></div>
         <label
           htmlFor="my-drawer-2"
           className="btn btn-primary drawer-button lg:hidden"
@@ -26,14 +29,17 @@ export default function DashbaordLayout() {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-60 min-h-screen bg-base-200 text-base-content flex flex-col justify-between">
+        <ul className="flex flex-col justify-between min-h-screen p-4 menu w-60 bg-base-200 text-base-content">
           {/* Sidebar content here */}
           <div>
-            <li>
-              <Link to={"/dashboard/manage-recipes"}>Mangae All Recipes</Link>
+          <li>
+              <NavLink to={"/dashboard"} end>Dashboard</NavLink>
             </li>
             <li>
-              <Link to={"/dashboard/add-recipe"}>Add Recipe</Link>
+              <NavLink to={"/dashboard/manage-recipes"}>Manage All Recipes</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/add-recipe"}>Add Recipe</NavLink>
             </li>
           </div>
           <div className="flex gap-4">

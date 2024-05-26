@@ -10,6 +10,9 @@ import { RxArrowTopRight } from "react-icons/rx";
 
 const LatestRecipeSlider = ({recipes}) => {
 
+const LatestRecipes = [...recipes].reverse()?.slice(0,10)
+
+
   return (
    <>
    <h1 className="my-10 text-4xl font-bold text-center">Latest Recipes</h1>
@@ -33,7 +36,7 @@ const LatestRecipeSlider = ({recipes}) => {
         modules={[FreeMode, Pagination]}
         className="max-w-full "
       >
-        {recipes && recipes?.slice(0,9)?.map((item) => (
+        {LatestRecipes && LatestRecipes?.slice(0,9)?.map((item) => (
           <SwiperSlide key={item.id}>
             <div className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[250px] w-[215px] lg:h-[400px] lg:w-[350px] overflow-hidden cursor-pointer">
               <div

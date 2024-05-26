@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditRecipe = () => {
   const { id } = useParams();
 
   const [recipeDetails, setRecipeDetails] = useState();
   const [categories, setCategories] = useState();
-
+  const navigate = useNavigate();
   useEffect(() => {
     async function load() {
       const categoriesData = await axios.get(
@@ -26,13 +27,16 @@ const EditRecipe = () => {
     load();
   }, [id]);
 
+
+ 
+
   const handleCreateRecipe = async (e) => {
     e.preventDefault();
 
     const form = e.target;
 
     const title = form.title.value;
-    const price = form.price.value;
+    const price = parseFloat(form.price.value);
     const category = form.category.value;
     const description = form.description.value;
     const recipeData = {
@@ -43,11 +47,17 @@ const EditRecipe = () => {
       description,
     };
 
-    await axios.patch(`http://localhost:3000/recipes/${id}`, recipeData);
+    try {
+      await axios.patch(`http://localhost:3000/recipes/${id}`, recipeData);
+    toast.success('Successfully Updated!');
+    navigate('/dashboard/manage-recipes');
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
   return (
     <div className="w-full px-16">
-      <h1 className="text-4xl mb-4">Add Recipe</h1>
+      <h1 className="mb-4 text-4xl">Add Recipe</h1>
       <form onSubmit={handleCreateRecipe} className="w-full">
         <div className="mb-4">
           <label htmlFor="">Title </label>
@@ -55,7 +65,7 @@ const EditRecipe = () => {
             defaultValue={recipeDetails?.title}
             type="text"
             name="title"
-            className="w-full py-3 px-5 border"
+            className="w-full px-5 py-3 border"
           />
         </div>
         <div className="mb-4">
@@ -64,12 +74,12 @@ const EditRecipe = () => {
             type="number"
             name="price"
             defaultValue={recipeDetails?.price}
-            className="w-full py-3 px-5 border"
+            className="w-full px-5 py-3 border"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="">Cateogry </label>
-          <select name="category" id="" className="w-full py-3 px-5 border">
+          <label htmlFor="">Category </label>
+          <select name="category" id="" className="w-full px-5 py-3 border">
             {categories?.map((category) => (
               <option
                 key={category?.title}
@@ -87,7 +97,7 @@ const EditRecipe = () => {
           <textarea
             defaultValue={recipeDetails?.description}
             name="description"
-            className="w-full py-3 px-5 border"
+            className="w-full px-5 py-3 border"
           />
         </div>
 
@@ -95,10 +105,11 @@ const EditRecipe = () => {
           <input
             type="submit"
             value={"Add Recipe"}
-            className="w-full btn py-3 px-5 border btn-neutral"
+            className="w-full px-5 py-3 border btn btn-neutral"
           />
         </div>
       </form>
+
     </div>
   );
 };

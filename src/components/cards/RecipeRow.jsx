@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-export default function RecipeRow({ recipe }) {
+export default function RecipeRow({ recipe, deleteRecipe }) {
+
+ 
   return (
     <tr>
       <th>{recipe?.id}</th>
@@ -15,7 +17,7 @@ export default function RecipeRow({ recipe }) {
         >
           Edit
         </Link>
-        <button className="btn btn-xs btn-error">Delete</button>
+        <button onClick={()=> deleteRecipe(recipe?.id)} className="btn btn-xs btn-error">Delete</button>
       </td>
     </tr>
   );
