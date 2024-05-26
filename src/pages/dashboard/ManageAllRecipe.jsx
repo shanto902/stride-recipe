@@ -47,6 +47,7 @@ export default function ManageAllRecipe() {
           ))}
         </tbody>
       </table>
+      
     </div>
   );
 }
